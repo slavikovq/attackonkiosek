@@ -4,10 +4,10 @@ export class Background {
     this.img = new Image();
     this.path = "./res/img/background.png";
     this.img.src = this.path;
-    this.ratio =0.90;
+    this.ratio = 0.90;
     this.size = {
-      width: 1400*this.ratio,
-      height: 460*this.ratio,
+      width: 1400 * this.ratio,
+      height: 460 * this.ratio,
     };
     this.position = {
       x: 0,
