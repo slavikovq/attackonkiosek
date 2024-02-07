@@ -1,6 +1,12 @@
 import { Character } from "./characters/Character.js";
 import { Background } from "./ui/basic-utils.js";
 
+const urbicSpawn = document.getElementById("urbicSpawn");
+
+urbicSpawn.addEventListener("click", (e) => {
+  friendlyCharacters.push(new Character("UnrealUrbic"));
+});
+
 const background = new Background();
 const friendlyCharacters = [];
 const enemyCharacters = [];
@@ -47,24 +53,37 @@ const clearCanvas = () => {
   background.draw(ctx);
 };
 const update = () => {
+  friendlyCharacters.map((a) => {
+    a.update();
+  });
+  enemyCharacters.map((b) => {
+    b.update();
+  });
   detectCollision();
 };
 const render = () => {
-  friendlyCharacters.map((c) => {
-    c.draw(ctx);
+  friendlyCharacters.map((a) => {
+    a.draw(ctx);
   });
-  enemyCharacters.map((c) => {
-    c.draw(ctx);
+  enemyCharacters.map((a) => {
+    a.draw(ctx);
   });
 };
 const getFps = () => {};
 
 const detectCollision = () => {
-  friendlyCharacters.map((friendly) => {
-    enemyCharacters.map((enemy) => {
-      Character.detectCollision(friendly, enemy);
+for (const a of friendlyCharacters) {
+  for (const b of enemyCharacters) {
+    if (Character.detectCollision(a,b))return;
+    };
+  }
+
+
+  /*friendlyCharacters.map((a) => {
+    enemyCharacters.map((b) => {
+      Character.detectCollision(a, b);
     });
-  });
+  }); */
 };
 
 const loadData = async () => {
